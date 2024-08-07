@@ -20,9 +20,13 @@ int main()
     view(mat);
     convert(mat, flag, table);
     i=recursive(mat, flag, table);
-    revert(mat, table);
-    printf("\t*** SOLVED SUDOKU ***\n");
-    view(mat);
+    if(i==0)
+    {
+        revert(mat, table);
+        printf("\t*** SOLVED SUDOKU ***\n");
+        view(mat);
+    }
+    else printf("\t*** NO SOLUTION FOUND FOR THIS SUDOKU ***\n");
     return 0;
 }
 
@@ -46,8 +50,16 @@ void view(int mat[][9])
         printf("\n\t");
         for(j=0; j<9; j++)
         {
-            if(j==0 || j==3 || j==6) printf("||  %d   ", mat[i][j]);
-            else printf("|   %d   ", mat[i][j]);
+            if(j==0 || j==3 || j==6)
+            {
+                if(mat[i][j]!=0) printf("||  %d   ", mat[i][j]);
+                else printf("||      ");
+            }
+            else
+            {
+                if(mat[i][j]!=0) printf("|   %d   ", mat[i][j]);
+                else printf("|       ");
+            }
         }
         printf("||\n\t");
         for(j=0; j<=9; j++)
@@ -134,7 +146,6 @@ void simple_solve(int mat[][9], int flag[][9], int table[])
                 {
                     if(mat[i][j]==table[s])
                     {
-                        printf("\n[%d]\tSolved [%d][%d]", c, i, j);
                         c++;
                         flag[i][j]=0;
                         progress=1;
@@ -170,7 +181,6 @@ void simple_solve(int mat[][9], int flag[][9], int table[])
                     if(flag1==1 && mat[i][j]%table[s]==0)
                     {
                         mat[i][j]=table[s];
-                        printf("\n[%d]\tSolved [%d][%d]", c, i, j);
                         c++;
                         flag[i][j]=0;
                         progress=1;
@@ -184,7 +194,6 @@ void simple_solve(int mat[][9], int flag[][9], int table[])
                     if(flag1==1 && mat[i][j]%table[s]==0 && flag[i][j]==1)
                     {
                         mat[i][j]=table[s];
-                        printf("\n[%d]\tSolved [%d][%d]", c, i, j);
                         c++;
                         flag[i][j]=0;
                         progress=1;
@@ -202,7 +211,6 @@ void simple_solve(int mat[][9], int flag[][9], int table[])
                     if(flag1==1 && mat[i][j]%table[s]==0 && flag[i][j]==1)
                     {
                         mat[i][j]=table[s];
-                        printf("\n[%d]\tSolved [%d][%d]", c, i, j);
                         c++;
                         flag[i][j]=0;
                         progress=1;
