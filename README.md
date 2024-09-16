@@ -8,7 +8,7 @@ To tell the program that a certain cells is empty, the user should insert the nu
 
 (es. " 0 0 5 2 6 0 4 0 7 ")
 
-The program then prints on the terminal the unsolved sudoku as entered by the user. It then procedes to solve try and solve the sudoku.
+The program then prints on the terminal the unsolved sudoku as entered by the user. It then proceedes to solve try and solve the sudoku.
 
 If the sudoku is legal (i.e. it is a solvable sudoku according to the traditional rules) then it will solve the puzzle and print the answer on the terminal window.
 Otherwise the program will inform the user that the sudoku is not solvable, as it has encountered some kind of logical contradiction while in the process of solving it.
